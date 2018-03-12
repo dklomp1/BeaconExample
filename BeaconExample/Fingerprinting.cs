@@ -9,7 +9,7 @@ namespace BeaconExample
         public static void AppendTrainingSet(string roomname, List<double> values)
         {
             string line = roomname + ";" + values[0] + ";" + values[1] + ";" + values[2] + ";" + values[3] + ";" + values[4] + ";" + values[5] + Environment.NewLine;
-            Console.WriteLine(line);
+            //Console.WriteLine(line);
             System.IO.File.AppendAllText("C:\\Users\\dklomp1\\Pictures\\location test\\training.txt", line);
         }
         public static Dictionary<List<string>, double[][]> LoadTrainingSet() {
@@ -17,7 +17,7 @@ namespace BeaconExample
             Dictionary<List<string>, double[][]> trainingSet = new Dictionary<List<string>, double[][]>();
             List<string> subStringList = new List<string>();
             double[][] subDoubleList = new double[lines.Length][];
-            Console.WriteLine("size trainingset: " + lines.Length);
+            //Console.WriteLine("size trainingset: " + lines.Length);
             for (int i = 0; i < lines.Length; i++)
             {
                 string[] stringList = lines[i].Split(';');

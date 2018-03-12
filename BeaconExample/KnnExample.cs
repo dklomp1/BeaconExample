@@ -25,7 +25,6 @@ namespace BeaconExample
                     labelCounter++;
                     classesList.Add(labelCounter);
                     labelMap.Add(labelCounter, label);
-                    Console.WriteLine(labelCounter + ":" + label);
                 }
                 else
                 {
@@ -35,10 +34,11 @@ namespace BeaconExample
 
             int[] classes = classesList.ToArray();
             double[][] inputs = trainingSet.First().Value;
-
+            
+            
             // Now we will create the K-Nearest Neighbors algorithm. 
             // It's possible to swtich around the k: 4 for the possibility of better accuracy
-            var knn = new KNearestNeighbors(k:4);
+            var knn = new KNearestNeighbors(k:5);
 
             // We train the algorithm:
             knn.Learn(inputs, classes);
@@ -97,9 +97,20 @@ namespace BeaconExample
         public static string GetRoom(KNearestNeighbors knn, double[] coordinates)
         {
             // After the algorithm has been created, we can classify a new instance:
+            Console.WriteLine("Room: "+getRoomname(knn.Decide(coordinates)));
             return getRoomname(knn.Decide(coordinates)); 
-
-
         }
+        public static List<string> getOptions(double[] coordinates, KNearestNeighbors knn)
+        {
+            List<string> options = new List<string>();
+            Dictionary<int, string> labelMap = Fingerprinting.ReadLabelMap();
+            int[] list = labelMap.Keys.ToArray();
+            foreach (double[] g in knn.GetNearestNeighbors(coordinates, out list))
+            {
+                options.Add(getRoomname(knn.Decide(g)));
+            }
+            return options;
+        }
+
     }
 }
