@@ -25,6 +25,7 @@ namespace BeaconExample
                     labelCounter++;
                     classesList.Add(labelCounter);
                     labelMap.Add(labelCounter, label);
+                    Console.WriteLine(labelCounter + ": " + label);
                 }
                 else
                 {

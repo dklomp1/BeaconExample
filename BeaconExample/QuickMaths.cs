@@ -68,8 +68,9 @@ namespace BeaconExample
             //Console.WriteLine(correction);
             refDist = ((txCalibrated2 - txCalibrated) / 100);
             distance = ((((rssiPositive - txCalibrated) / refDist) / 100) * tx2Distance) * correction;
-            if(distance == -3.65957831981921){
-                distance = 300.00;
+            //Console.WriteLine(distance);
+            if(distance < 0){
+                distance = 299.00;
             }
             return distance + 1;
         }

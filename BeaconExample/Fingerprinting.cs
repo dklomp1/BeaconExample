@@ -10,10 +10,10 @@ namespace BeaconExample
         {
             string line = roomname + ";" + values[0] + ";" + values[1] + ";" + values[2] + ";" + values[3] + ";" + values[4] + ";" + values[5] + Environment.NewLine;
             //Console.WriteLine(line);
-            System.IO.File.AppendAllText("C:\\Users\\dklomp1\\Pictures\\location test\\training.txt", line);
+            System.IO.File.AppendAllText("C:\\Users\\dklomp1\\Pictures\\location test\\trainingRssi.txt", line);
         }
         public static Dictionary<List<string>, double[][]> LoadTrainingSet() {
-            string[] lines = System.IO.File.ReadAllLines("C:\\Users\\dklomp1\\Pictures\\location test\\training.txt");
+            string[] lines = System.IO.File.ReadAllLines("C:\\Users\\dklomp1\\Pictures\\location test\\trainingRssi.txt");
             Dictionary<List<string>, double[][]> trainingSet = new Dictionary<List<string>, double[][]>();
             List<string> subStringList = new List<string>();
             double[][] subDoubleList = new double[lines.Length][];
@@ -27,7 +27,8 @@ namespace BeaconExample
                 {
                     try
                     {
-                        subSubDoubleList.Add(double.Parse(nth));
+                        subSubDoubleList.Add(double.Parse(nth) * -1);
+                        Console.WriteLine(double.Parse(nth) * -1);
                     }
                     catch { }
                 }
